@@ -1,3 +1,8 @@
+$(document).ready({
+
+
+
+})();
 
 function initMap() {
   var directionsDisplay = new google.maps.DirectionsRenderer;
@@ -22,7 +27,7 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay) {
     // Note that Javascript allows us to access the constant
     // using square brackets and a string value as its
     // "property."
-    travelMode: google.maps.TravelMode[selectedMode],
+    travelMode: google.maps.TravelMode[WALKING],
     provideRouteAlternatives: true
   }, function(response, status) {
     if (status == 'OK') {
