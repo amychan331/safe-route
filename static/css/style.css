@@ -107,7 +107,7 @@ body {
   margin-left: 12px;
   padding: 0 11px 0 13px;
   text-overflow: ellipsis;
-  width: 400px;
+  width: 100%;
 }
 
 #start-location:focus, #end-location:focus {
