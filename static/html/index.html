@@ -15,6 +15,17 @@
 <body>
   <div class="container">
     <div id="navigation-bar"></div>
+    <div class="pac-card" id="pac-card">
+      <div>
+        <div id="title">
+          Autocomplete search
+        </div>
+      </div>
+      <div id="pac-container">
+        <input id="start-location" type="text" placeholder="Enter starting point">
+        <input id="end-location" type="text" placeholder="Enter destination">
+      </div>
+    </div>
 
     <div class="row">
       <!-- not in row? -->
@@ -48,7 +59,7 @@
     </div>
   </div>
   <script async defer
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxlINCovPm9WHr-WLb9IFiRQzgKXRKnMU&callback=initMap">
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxlINCovPm9WHr-WLb9IFiRQzgKXRKnMU&libraries=places&callback=initMap">
   </script>
 </body>
 </html>
