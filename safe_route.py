@@ -18,8 +18,8 @@ def index():
 
 
 @app.route("/example")
-def gmaps_example():
-    return send_from_directory('static/html', 'gmaps-example.html')
+def index_wip():
+    return send_from_directory('static/html', "index.html")
 
 
 if __name__ == "__main__":

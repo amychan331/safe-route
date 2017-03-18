@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="/static/js/map.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="/static/css/style.css"/>
+
+</head>
+<body>
+  <div id="navigation-bar"></div>
+
+  <div id="floating-panel">
+  <b>Mode of Travel: </b>
+  <select id="mode">
+    <option value="DRIVING">Driving</option>
+    <option value="WALKING">Walking</option>
+    <option value="BICYCLING">Bicycling</option>
+    <option value="TRANSIT">Transit</option>
+  </select>
+  </div>
+  <div id="map"></div>
+
+  <script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxlINCovPm9WHr-WLb9IFiRQzgKXRKnMU&callback=initMap">
+  </script>
+</body>
+</html>
