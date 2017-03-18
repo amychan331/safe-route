@@ -105,10 +105,6 @@
     </div>
 
     <script>
-      // This example requires the Places library. Include the libraries=places
-      // parameter when you first load the API. For example:
-      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
-
       function initMap() {
         var directionsDisplay = new google.maps.DirectionsRenderer;
         var directionsService = new google.maps.DirectionsService;
@@ -128,29 +124,38 @@
         autocomplete.addListener('place_changed', function() {
 					var place = autocomplete.getPlace()
 					startCoordinates = [place.geometry.location.lat(), place.geometry.location.lng()]
-					console.log(startCoordinates)
+
+					if (destinationCoordinates && startCoordinates) {
+        		calculateAndDisplayRoute(directionsService, directionsDisplay, startCoordinates, destinationCoordinates, map);
+					}
         });
 
 				autocomplete2.addListener('place_changed', function () {
 					var place = autocomplete2.getPlace()
 					destinationCoordinates = [place.geometry.location.lat(), place.geometry.location.lng()]
-					console.log(destinationCoordinates)
-        	calculateAndDisplayRoute(directionsService, directionsDisplay, startCoordinates, destinationCoordinates);
-        	directionsDisplay.setMap(map);
+
+					if (destinationCoordinates && startCoordinates) {
+        		calculateAndDisplayRoute(directionsService, directionsDisplay, startCoordinates, destinationCoordinates, map);
+					}
 				})
       }
 
-      function calculateAndDisplayRoute(directionsService, directionsDisplay, start, destination) {
+      function calculateAndDisplayRoute(directionsService, directionsDisplay, start, destination, map) {
         var selectedMode = "WALKING";
         directionsService.route({
           origin: {lat: start[0], lng: start[1]},  // 875 Howard Street
           destination: {lat: destination[0], lng: destination[1]},  // 714 Montgomery St
           travelMode: google.maps.TravelMode[selectedMode],
-          provideRouteAlternatives: false
+          provideRouteAlternatives: true
         }, function(response, status) {
-          if (status == 'OK') {
-						console.log(response)
-            directionsDisplay.setDirections(response);
+          if (status == google.maps.DirectionsStatus.OK) {
+						for (var i = 0, len = response.routes.length; i < len; i++) {
+							new google.maps.DirectionsRenderer({
+								map: map,
+								directions: response,
+								routeIndex: i
+							})
+						}
           } else {
             window.alert('Directions request failed due to ' + status);
           }
