@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <title>User Feedback form</title>
+ 
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+ 
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+
+    
+ 
+ 
+</head>
+ 
+<body>
+ 
+    <div class="container">
+        <div class="header">
+            <nav>
+                <ul class="nav nav-pills pull-right">
+                    <li role="presentation" class="active"><a href="#">Home</a>
+                    </li>
+                    <li role="presentation"><a href="#">Sign In</a>
+                    </li>
+                    <li role="presentation"><a href="showSignUp">Sign Up</a>
+                    </li>
+                </ul>
+            </nav>
+            <h3 class="text-muted">Feedback Form</h3>
+        </div>
+ 
+        <div class="jumbotron">
+            <h1>User Feedback Form</h1>
+            <p class="lead"></p>
+            
+            </p>
+        </div>
+        <div class="route">
+
+            <form>
+                Route/Street Travelled: <input type="text" name="route">
+            </form>
+        </div>
+        <form id="ratingsForm">
+    <div class="stars">
+        <input type="radio" name="star" class="star-1" id="star-1" />
+        <label class="star-1" for="star-1">1</label>
+        <input type="radio" name="star" class="star-2" id="star-2" />
+        <label class="star-2" for="star-2">2</label>
+        <input type="radio" name="star" class="star-3" id="star-3" />
+        <label class="star-3" for="star-3">3</label>
+        <input type="radio" name="star" class="star-4" id="star-4" />
+        <label class="star-4" for="star-4">4</label>
+        <input type="radio" name="star" class="star-5" id="star-5" />
+        <label class="star-5" for="star-5">5</label>
+        <span></span>
+    </div>
+  
+</form>
+
+ 
+        <div class="row marketing">
+
+            <div class="col-lg-6">
+                <form>
+                    Gender: <input type="text" name="gender"><br>
+                    <br>
+                    Time and Date Travelled: <input type="text" name="dttravel">
+                </form>
+               
+            </div>
+ 
+            <div class="col-lg-6">
+                <form>
+                    Experience: <input type="text" name="experience"><br>
+                    <br>
+                    
+                </form>
+            </div>
+        </div>
+        <div>
+            <form>
+            <br><br>
+  <input type="submit" value="Submit">
+</form>
+        </div>
+ 
+        <footer class="footer">
+            <p>Safe Route Group - The Expat Woman Hackathon</p>
+        </footer>
+ 
+    </div>
+</body>
+ 
+</html>
