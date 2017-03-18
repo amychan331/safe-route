@@ -55,7 +55,19 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, start, d
     provideRouteAlternatives: true
   }, function(response, status) {
     if (status == google.maps.DirectionsStatus.OK) {
+      $(".route").remove();
+
       for (var i = 0, len = response.routes.length; i < len; i++) {
+        var route = response.routes[i];
+
+        var routeElement = $(".route-template:first").clone();
+        $("#routes").append(routeElement);
+        routeElement.find(".route-summary").text("Route " + (i + 1) + ": " + route.summary);
+        routeElement.find(".distance").text(route.legs[0].distance.text);
+        routeElement.find(".duration").text(route.legs[0].duration.text);
+        routeElement.removeClass("route-template").addClass("route");
+        routeElement.show();
+
         directions.push(new google.maps.DirectionsRenderer({
           map: map,
           directions: response,
