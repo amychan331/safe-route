@@ -1,5 +1,4 @@
-$(document).ready({
-})();
+var directions = []
 
 function initMap() {
   var directionsDisplay = new google.maps.DirectionsRenderer;
@@ -13,7 +12,9 @@ function initMap() {
 
   var map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 37.7749, lng: -122.4194},
-    zoom: 13
+    zoom: 13,
+    streetViewControl: false,
+    zoomControl: true
   });
   directionsDisplay.setMap(map);
 
@@ -37,6 +38,15 @@ function initMap() {
 }
 
 function calculateAndDisplayRoute(directionsService, directionsDisplay, start, destination, map) {
+  directionsDisplay.setDirections({routes: []});
+  directionsDisplay.setMap(null);
+
+  if (directions && directions.length > 0) {
+    for (var i = 0; i < directions.length; i++)
+      directions[i].setMap(null);
+  }
+  directions = [];
+
   var selectedMode = "WALKING";
   directionsService.route({
     origin: {lat: start[0], lng: start[1]},  // 875 Howard Street
@@ -46,11 +56,14 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, start, d
   }, function(response, status) {
     if (status == google.maps.DirectionsStatus.OK) {
       for (var i = 0, len = response.routes.length; i < len; i++) {
-        new google.maps.DirectionsRenderer({
+        directions.push(new google.maps.DirectionsRenderer({
           map: map,
           directions: response,
-          routeIndex: i
-        })
+          routeIndex: i,
+          polylineOptions: {
+            strokeColor: "red"
+          }
+        }))
       }
     } else {
       window.alert('Directions request failed due to ' + status);
