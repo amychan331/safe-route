@@ -1,12 +1,13 @@
-from flask import Flask,render_template
- 
+from flask import Flask, render_template, send_from_directory
+
 app = Flask(__name__)
 
 
 @app.route("/")
 def index():
-    return "Welcome to Safe Route Travel for Walkers!"
-    
+    return send_from_directory("static/html", "index.html")
+
+
 @app.route("/feedback")
 def user_feedback():
     return render_template('user_feedback.html')
@@ -14,6 +15,7 @@ def user_feedback():
 
 
 def submit():
+    pass
     
 
 if __name__ == "__main__":
