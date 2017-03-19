@@ -2,19 +2,22 @@ var directions = []
 
 function getCrimeList(cb) {
   return new Promise(function(resolve) {
-    $.ajax('http://localhost:3000/crimes', {
-    }, function(crimes) {
-      resolve(crimes);
-    });
+    $.ajax({
+    url: "http://10.84.18.205:3000/crimes",
+    success: function(response) {
+      console.log(response);
+      resolve(response);
+    }
+});
   });
 }
 
 function scoreForRoute(route) {
   return getCrimeList()
   .then((crimes) => {
-    const routeScore = crime.reduce(function(score, thisCrime) {
-      var latitude = thisCrime.coordinates[0];
-      var longitude = thisCrime.coordinates[1];
+    const routeScore = crimes.reduce(function(score, thisCrime) {
+      var latitude = thisCrime.coordinate[0];
+      var longitude = thisCrime.coordinate[1];
       var thisLocation = new google.maps.LatLng(latitude, longitude);
       var isOnRoute = google.maps.geometry.poly.isLocationOnEdge(
         thisLocation,
