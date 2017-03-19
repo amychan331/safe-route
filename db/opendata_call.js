@@ -1,22 +1,23 @@
-const x = "-122.417488323639";
-const y = "37.7651818039906";
+const coord1 = [37.7818248, -122.4039391];
+const coord2 = [37.79589279999999, -122.40316029999997];
 const category = "ASSAULT";
 
-fetch(`https://data.sfgov.org/resource/cuks-n6tp.json?x=${x}&y=${y}&category=${category}`, {
+let coordinates = fetch(`https://data.sfgov.org/resource/cuks-n6tp.json?category=${category}&$where=within_box(location, ${coord1[0]}, ${coord1[1]}, ${coord2[0]}, ${coord2[1]})`, {
   method: 'GET',
 }).then(res => {
   return res.json()
 }).then(data => {
   try {
-    let crime = data.filter( incident => {
+    let filtered_data = data.filter( incident => {
         let differences = new Date().getTime() - new Date(incident.date).getTime();
         return Math.floor(differences / (1000 * 60 * 60 * 24 * 7 * 4)) < 6;
     });
-    console.log("Number of " + (data[0].category).toLowerCase() + " crime: " + crime.length);
+    return filtered_data.length;
   }
   catch(e) {
-    console.log('no data');
+    return 'no data';
   }
 }).catch(e => {
-  console.log('Request failed', e);
+  return 'Request failed' + e;
 })
+coordinates.then(result => console.log(result));
