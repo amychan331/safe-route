@@ -22,6 +22,30 @@ const openDataCall = (coord1, coord2) => {
   });
 };
 
+const score = {
+  BURGLARY: 1,
+  'VEHICLE THEFT': 2,
+  VANDALISM: 1,
+  'SUSPICIOUS OCC': 3,
+  ASSAULT: 4,
+  'WEAPON LAWS': 4,
+  ROBBERY: 4,
+  DRUNKENNESS: 2,
+  'LARCENY/THEFT': 2,
+  'MISSING PERSON': 1,
+  'SEX OFFENSES, FORCIBLE': 5,
+  WARRANTS: 4,
+  'DRUG/NARCOTIC': 3,
+  KIDNAPPING: 2
+};
+function getWeight(category) {
+  if(score[category]) {
+    return score[category];
+  } else {
+    return 0;
+  }
+}
+
 const openDataCallMock = (coord1, coord2) => {
   return new Promise((resolve, reject) => {
     fs.readFile(require('path').join(__dirname, '../../db/boxed.json'), 'utf8', function (err, data) {
@@ -51,8 +75,10 @@ router.get('/', function(req, res, next) {
       });
 
       const filteredData = data.map((crime) => {
-        return { coordinate: crime.location.coordinates,
-        category: crime.category };
+        return {
+          coordinate: crime.location.coordinates,
+          weight: getWeight(crime.category)
+        };
       });
       res.status(200).send(filteredData);
       return filtered_data;
