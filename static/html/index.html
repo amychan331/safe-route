@@ -4,26 +4,69 @@
   <meta charset="UTF-8">
   <title>Title</title>
   <script src="/static/js/map.js"></script>
+  <script src="/static/js/jquery-3.2.0.min.js"></script>
 
+  <link rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"/>
+  <link rel="stylesheet" href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css"/>
   <link rel="stylesheet" type="text/css" href="/static/css/style.css"/>
 
 </head>
 <body>
-  <div id="navigation-bar"></div>
+  <div class="container">
+    <div id="navigation-bar"></div>
+    <div class="row">
+      <div class="pac-card col-lg-6" id="pac-card">
+        <div>
+          <div id="title">
+            Autocomplete search
+          </div>
+        </div>
+        <div id="pac-container">
+          <input id="start-location" type="text" placeholder="Enter starting point">
+          <input id="end-location" type="text" placeholder="Enter destination">
+        </div>
+      </div>
+    </div>
 
-  <div id="floating-panel">
-  <b>Mode of Travel: </b>
-  <select id="mode">
-    <option value="DRIVING">Driving</option>
-    <option value="WALKING">Walking</option>
-    <option value="BICYCLING">Bicycling</option>
-    <option value="TRANSIT">Transit</option>
-  </select>
+    <div class="row">
+      <!-- not in row? -->
+      <div id="map"></div>
+    </div>
+
+    <div class="row">
+      <div id="routes" class="col-lg-6">
+        <div class="route-template" style="display: none;">
+          <div class="col-xs-10">
+            <h4 class="route-summary">Route 1</h4>
+            <div class="rating">
+              <div class="stars">
+                <!-- TODO: fixme, being lazy -->
+                &#9733;&#9733;&#9733;&#9733;&#9734;
+              </div>
+            </div>
+            <div class="distance">0.9 m</div>
+            <div class="duration">16 min</div>
+
+            <h5>Keywords</h5>
+            <div class="keywords">
+              <div class="keyword"><b>Mugging</b> &nbsp; 1</div>
+              <div class="keyword"><b>Catcalling</b> &nbsp; 3</div>
+              <div class="keyword"><b>Lack of Light</b> &nbsp; 5</div>
+            </div>
+
+          </div>
+          <div class="col-xs-2">
+              <div class="go-button">
+                <div class="go-button-text">Walk</div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <div id="map"></div>
-
   <script async defer
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxlINCovPm9WHr-WLb9IFiRQzgKXRKnMU&callback=initMap">
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxlINCovPm9WHr-WLb9IFiRQzgKXRKnMU&libraries=places&callback=initMap">
   </script>
 </body>
 </html>

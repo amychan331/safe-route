@@ -14,17 +14,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return "Welcome!"
-
-
-@app.route("/example")
-def index_wip():
     return send_from_directory('static/html', "index.html")
-
-@app.route("/map")
-def map():
-    return send_from_directory('static/html', 'autocomplete.html')
-
 
 if __name__ == "__main__":
     app.run(port=5000)
