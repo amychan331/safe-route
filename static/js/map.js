@@ -1,35 +1,5 @@
 var directions = []
 
-function getCrimeList(cb) {
-  return new Promise(function(resolve) {
-    $.ajax('http://localhost:3000/crimes', {
-    }, function(crimes) {
-      resolve(crimes);
-    });
-  });
-}
-
-function scoreForRoute(route) {
-  return getCrimeList()
-  .then((crimes) => {
-    const routeScore = crime.reduce(function(score, thisCrime) {
-      var latitude = thisCrime.coordinates[0];
-      var longitude = thisCrime.coordinates[1];
-      var thisLocation = new google.maps.LatLng(latitude, longitude);
-      var isOnRoute = google.maps.geometry.poly.isLocationOnEdge(
-        thisLocation,
-        route,
-        10e-8);
-      if (isOnRoute) {
-        score += thisCrime.weight;
-      }
-      return score;
-    }, 0);
-
-    return Promise.resolve(routeScore);
-  });
-}
-
 function initMap() {
   var directionsDisplay = new google.maps.DirectionsRenderer;
   var directionsService = new google.maps.DirectionsService;
@@ -89,11 +59,6 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, start, d
 
       for (var i = 0, len = response.routes.length; i < len; i++) {
         var route = response.routes[i];
-
-        scoreForRoute(route)
-          .then((score) => {
-            console.log('route has score', score);
-          });
 
         var routeElement = $(".route-template:first").clone();
         $("#routes").append(routeElement);
