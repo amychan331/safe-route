@@ -14,11 +14,6 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return "Welcome!"
-
-
-@app.route("/example")
-def index_wip():
     return send_from_directory('static/html', "index.html")
 
 if __name__ == "__main__":
