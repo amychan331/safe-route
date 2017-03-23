@@ -14,7 +14,7 @@ The map are generated from Google Map API. The crime data are extracted real tim
 
 ## Contribution
 Working with my teammates, Grace and Steph, we generated database parameters for the crime data and keywords for the user feedback.
-I research into the SFPD crime OpenData, then extracted and filtered the JSON data with SoQL (system-specific version of SQL), ES6 higher order functions, and REST according to the database parameters that my teammate and I decided beforehand. My part of the script can be found at ![this file](db/index.html)
+I research into the SFPD crime OpenData, then extracted and filtered the JSON data with SoQL (system-specific version of SQL), ES6 higher order functions, and REST according to the database parameters that my teammate and I decided beforehand. My part of the script can be found at ![this file](db/opendata_call.js)
 
 ## Final Product
 ![Start Screen](demo/searching.png)
